@@ -1,0 +1,98 @@
+Importación de data
+```{r}
+library(rio)
+link1="https://github.com/20175813/TRABAJO_ESTADISTICA/raw/master/Law%20mandates%20equal%20remuneration%20for%20females%20and%20males%20for%20work%20of%20equal%20value%20(1%3Dyes%3B%200%3Dno).xlsx"
+equalRemuneration=import(link1)
+
+link2="https://github.com/20175813/TRABAJO_ESTADISTICA/raw/master/The%20law%20prohibits%20discrimination%20in%20access%20to%20credit%20based%20on%20gender%20(1%3Dyes%3B%200%3Dno).xlsx"
+credit=import(link2)
+
+link3="https://github.com/20175813/TRABAJO_ESTADISTICA/raw/master/There%20is%20legislation%20on%20sexual%20harassment%20in%20employment%20(1%3Dyes%3B%200%3Dno).xlsx"
+sexualHarassment=import(link3)
+
+link4="https://github.com/20175813/TRABAJO_ESTADISTICA/raw/master/There%20is%20legislation%20specifically%20addressing%20domestic%20violence%20(1%3Dyes%3B%200%3Dno).xlsx"
+domesticViolence=import(link4)
+
+link5="https://github.com/20175813/TRABAJO_ESTADISTICA/raw/master/There%20is%20no%20legal%20provision%20that%20requires%20a%20married%20woman%20to%20obey%20her%20husband%20(1%3Dyes%3B%200%3Dno).xlsx"
+obeyHusband=import(link5)
+
+```
+
+Limpieza de data equalRemuneration
+```{r}
+names(equalRemuneration)
+equalRemuneration[,c(1,2,4)]=NULL
+names(equalRemuneration)=c("Country", "1990", "1995", "2000", "2005", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018")
+equalRemuneration=equalRemuneration[-c(264:268),]
+equalRemuneration=equalRemuneration[-c(106:109),]
+equalRemuneration=equalRemuneration[-c(61:64),]
+equalRemuneration=equalRemuneration[-c(130:133),]
+equalRemuneration=equalRemuneration[-c(99:100),]
+equalRemuneration=equalRemuneration[-c(260, 252),]
+
+str(equalRemuneration)
+equalRemuneration[,-1]=lapply(equalRemuneration[,-1], as.numeric)
+
+equalRemuneration$Country=trimws(equalRemuneration$Country,whitespace = "[\\h\\v]")
+
+write.csv(equalRemuneration, file = "equalRemuneration.csv", row.names = FALSE)
+```
+
+Limpieza de data credit
+```{r}
+credit=credit[-c(1:263),]
+credit=credit[-c(264:268),]
+credit[,c(1,2,4)]=NULL
+
+names(credit)=c("Country", "1990", "1995", "2000", "2005", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018")
+
+str(credit)
+credit[,-1]=lapply(credit[,-1], as.numeric)
+
+credit$Country=trimws(credit$Country,whitespace = "[\\h\\v]")
+
+write.csv(credit, file = "credit.csv", row.names = FALSE)
+```
+
+Limpieza de data sexualHarrasment
+```{r}
+sexualHarassment=sexualHarassment[-c(1:263, 527:1057),]
+sexualHarassment[,c(1,2,4)]=NULL
+names(sexualHarassment)=c("Country", "1990", "1995", "2000", "2005", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018")
+
+str(sexualHarassment)
+sexualHarassment[,-1]=lapply(sexualHarassment[,-1], as.numeric)
+
+sexualHarassment$Country=trimws(sexualHarassment$Country,whitespace = "[\\h\\v]")
+
+write.csv(sexualHarassment, file = "sexualHarassment.csv", row.names = FALSE)
+```
+
+Limpieza de data domesticViolence
+```{r}
+domesticViolence=domesticViolence[-c(1:526, 790:1057),]
+domesticViolence[,c(1,2,4)]=NULL
+names(domesticViolence)=c("Country", "1990", "1995", "2000", "2005", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018")
+
+str(domesticViolence)
+domesticViolence[,-1]=lapply(domesticViolence[,-1], as.numeric)
+
+domesticViolence$Country=trimws(domesticViolence$Country,whitespace = "[\\h\\v]")
+
+write.csv(domesticViolence, file = "domesticViolence.csv", row.names = FALSE)
+```
+
+Limpieza de data obeyHusband
+```{r}
+obeyHusband=obeyHusband[-c(1:789, 1053:1057),]
+obeyHusband[,c(1,2,4)]=NULL
+names(obeyHusband)=c("Country", "1990", "1995", "2000", "2005", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018")
+
+str(obeyHusband)
+obeyHusband[,-1]=lapply(obeyHusband[,-1], as.numeric)
+
+obeyHusband$Country=trimws(obeyHusband$Country,whitespace = "[\\h\\v]")
+
+write.csv(obeyHusband, file = "obeyHusband.csv", row.names = FALSE)
+```
+

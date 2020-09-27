@@ -1,3 +1,5 @@
+Se escogió estas 5 variables porque se tiene la pregunta de si la falta de leyes a favor de la protección de la mujer e igualdad de género incentivan a las mujeres a participar políticamente(votación). Como se observará la variable credit y la variable obeyHusband podrían parecer impensables en nuestra realidad, pero algunos países a tienen leyes que exigen a la mujer obeceder a su esposo u permiten la discriminación en base al género para acceder a crédito, asimismo hay variables que son más cercanas a nuestra realidad como domesticViolence, sexualHarassment y equalRemuneration los cuales son temas que están en constante discusión en nuestra realidad. Así, con estás variables, podremos analizar los diferentes contextos en cada país en base a las barreras legales que podrían o no incentivar la participación política de las mujeres.  
+
 Importación de data
 ```{r}
 library(rio)
